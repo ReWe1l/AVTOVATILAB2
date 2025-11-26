@@ -1,8 +1,9 @@
-﻿using System;
+﻿//using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace RegexAutomaton
 {
@@ -90,10 +91,9 @@ namespace RegexAutomaton
 
         public override IEnumerable<string> GenerateWords(HashSet<char> alphabet)
         {
-            // Бесконечная генерация: сначала пустое слово, затем слова возрастающей длины
+            // Бесконечная генерация, т.е. сначала пустое слово, затем слова возрастающей длины
             yield return "";
 
-            // Генерируем слова все большей длины
             var currentLevel = new List<string> { "" };
 
             while (true)
@@ -112,7 +112,7 @@ namespace RegexAutomaton
             }
         }
     }
-
+    //
     // Парсер регулярных выражений
     public class RegexParser
     {
@@ -171,7 +171,7 @@ namespace RegexAutomaton
 
             return node;
         }
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private RegexSt ParsePrimary()
         {
             if (position >= input.Length)
@@ -235,7 +235,7 @@ namespace RegexAutomaton
                 // Если символы равны, переходим к следующему
             }
 
-            // Если первые minLength символов совпадают, то короче слово идет первым
+            // Если первые minLength символов совпадают, то слово покороче идет первым
             return x.Length.CompareTo(y.Length);
         }
     }
@@ -329,7 +329,7 @@ namespace RegexAutomaton
                     Console.WriteLine($"\nДополнительная информация:");
                     Console.WriteLine($"  - Алфавит: {string.Join("", alphabet)}");
                     Console.WriteLine($"  - Регулярное выражение: {regex}");
-                    Console.WriteLine($"  - Количество итераций (слов): {iterations}");
+                    Console.WriteLine($"  - Количество итераций: {iterations}");
                     Console.ResetColor();
 
                     if (words.Count < iterations)
@@ -344,7 +344,7 @@ namespace RegexAutomaton
                 }
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\nПродолжить? (1 - Да; 2 - Нет)");
+                Console.WriteLine("\nПродолжить? (1 - Да; 2 - Нет). Можно нажать Enter для 'Да'.");
                 Console.ResetColor();
                 string choice = Console.ReadLine();
                 switch (choice)
@@ -360,7 +360,7 @@ namespace RegexAutomaton
                         break;
                 }
             }
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\nЗавершение работы программы...");
             Console.ResetColor();
         }
